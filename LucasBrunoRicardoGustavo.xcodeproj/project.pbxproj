@@ -12,8 +12,8 @@
 		A0B93B372408A46500D17C30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B93B362408A46500D17C30 /* ViewController.swift */; };
 		A0B93B3A2408A46500D17C30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B382408A46500D17C30 /* Main.storyboard */; };
 		A0B93B3D2408A46500D17C30 /* LucasBrunoRicardoGustavo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A0B93B3B2408A46500D17C30 /* LucasBrunoRicardoGustavo.xcdatamodeld */; };
-		A0B93B3F2408A46700D17C30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B3E2408A46700D17C30 /* Assets.xcassets */; };
 		A0B93B422408A46700D17C30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B402408A46700D17C30 /* LaunchScreen.storyboard */; };
+		A0B93B522408B40000D17C30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B512408B40000D17C30 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,9 +23,9 @@
 		A0B93B362408A46500D17C30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A0B93B392408A46500D17C30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A0B93B3C2408A46500D17C30 /* LucasBrunoRicardoGustavo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LucasBrunoRicardoGustavo.xcdatamodel; sourceTree = "<group>"; };
-		A0B93B3E2408A46700D17C30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0B93B412408A46700D17C30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A0B93B432408A46700D17C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0B93B512408B40000D17C30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +81,7 @@
 		A0B93B4A2408A4DD00D17C30 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A0B93B3E2408A46700D17C30 /* Assets.xcassets */,
+				A0B93B512408B40000D17C30 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -170,7 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0B93B422408A46700D17C30 /* LaunchScreen.storyboard in Resources */,
-				A0B93B3F2408A46700D17C30 /* Assets.xcassets in Resources */,
+				A0B93B522408B40000D17C30 /* Assets.xcassets in Resources */,
 				A0B93B3A2408A46500D17C30 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

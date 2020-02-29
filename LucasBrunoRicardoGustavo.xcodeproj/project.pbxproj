@@ -7,25 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A069EC3F240A0E98009DD533 /* ProductListTableViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B53240A035100D17C30 /* ProductListTableViewController.swift */; };
+		A069EC40240A0E98009DD533 /* RegisterProductVC.swift in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B55240A0D8B00D17C30 /* RegisterProductVC.swift */; };
+		A069EC42240A179E009DD533 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069EC41240A179E009DD533 /* SettingsVC.swift */; };
+		A069EC44240A1C26009DD533 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A069EC43240A1C26009DD533 /* Settings.bundle */; };
 		A0B93B332408A46500D17C30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B93B322408A46500D17C30 /* AppDelegate.swift */; };
 		A0B93B352408A46500D17C30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B93B342408A46500D17C30 /* SceneDelegate.swift */; };
-		A0B93B372408A46500D17C30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B93B362408A46500D17C30 /* ViewController.swift */; };
 		A0B93B3A2408A46500D17C30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B382408A46500D17C30 /* Main.storyboard */; };
 		A0B93B3D2408A46500D17C30 /* LucasBrunoRicardoGustavo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A0B93B3B2408A46500D17C30 /* LucasBrunoRicardoGustavo.xcdatamodeld */; };
 		A0B93B422408A46700D17C30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B402408A46700D17C30 /* LaunchScreen.storyboard */; };
 		A0B93B522408B40000D17C30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B512408B40000D17C30 /* Assets.xcassets */; };
+		A0B93B54240A035100D17C30 /* ProductListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B93B53240A035100D17C30 /* ProductListTableViewController.swift */; };
+		A0B93B56240A0D8B00D17C30 /* RegisterProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B93B55240A0D8B00D17C30 /* RegisterProductVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A069EC41240A179E009DD533 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		A069EC43240A1C26009DD533 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A0B93B2F2408A46500D17C30 /* ComprasUSA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComprasUSA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0B93B322408A46500D17C30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0B93B342408A46500D17C30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A0B93B362408A46500D17C30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A0B93B392408A46500D17C30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A0B93B3C2408A46500D17C30 /* LucasBrunoRicardoGustavo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LucasBrunoRicardoGustavo.xcdatamodel; sourceTree = "<group>"; };
 		A0B93B412408A46700D17C30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A0B93B432408A46700D17C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0B93B512408B40000D17C30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A0B93B53240A035100D17C30 /* ProductListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListTableViewController.swift; sourceTree = "<group>"; };
+		A0B93B55240A0D8B00D17C30 /* RegisterProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProductVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +77,7 @@
 		A0B93B492408A4C700D17C30 /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				A069EC43240A1C26009DD533 /* Settings.bundle */,
 				A0B93B4A2408A4DD00D17C30 /* Resources */,
 				A0B93B302408A46500D17C30 /* Products */,
 				A0B93B342408A46500D17C30 /* SceneDelegate.swift */,
@@ -106,7 +115,9 @@
 		A0B93B4D2408A6C500D17C30 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A0B93B362408A46500D17C30 /* ViewController.swift */,
+				A0B93B53240A035100D17C30 /* ProductListTableViewController.swift */,
+				A0B93B55240A0D8B00D17C30 /* RegisterProductVC.swift */,
+				A069EC41240A179E009DD533 /* SettingsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -169,8 +180,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A069EC3F240A0E98009DD533 /* ProductListTableViewController.swift in Resources */,
+				A069EC40240A0E98009DD533 /* RegisterProductVC.swift in Resources */,
 				A0B93B422408A46700D17C30 /* LaunchScreen.storyboard in Resources */,
 				A0B93B522408B40000D17C30 /* Assets.xcassets in Resources */,
+				A069EC44240A1C26009DD533 /* Settings.bundle in Resources */,
 				A0B93B3A2408A46500D17C30 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,9 +197,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0B93B3D2408A46500D17C30 /* LucasBrunoRicardoGustavo.xcdatamodeld in Sources */,
-				A0B93B372408A46500D17C30 /* ViewController.swift in Sources */,
 				A0B93B332408A46500D17C30 /* AppDelegate.swift in Sources */,
+				A0B93B54240A035100D17C30 /* ProductListTableViewController.swift in Sources */,
+				A0B93B56240A0D8B00D17C30 /* RegisterProductVC.swift in Sources */,
 				A0B93B352408A46500D17C30 /* SceneDelegate.swift in Sources */,
+				A069EC42240A179E009DD533 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

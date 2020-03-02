@@ -21,7 +21,6 @@ class SettingsVC: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     // MARK: - Methods
@@ -34,8 +33,8 @@ class SettingsVC: UIViewController {
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Imposto"
-//            textField.text = String(describing: item?.tax)
             textField.keyboardType = .decimalPad
+//            textField.text = String(describing: item?.tax)
         }
         
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
@@ -44,7 +43,6 @@ class SettingsVC: UIViewController {
         let addStateAction = UIAlertAction(title: "Adicionar", style: .default) { (_) in
             guard let name = alert.textFields?.first?.text,
                 let tax = alert.textFields?.last?.text else {return}
-            
         }
         alert.addAction(addStateAction)
         
@@ -56,15 +54,4 @@ class SettingsVC: UIViewController {
     @IBAction func btnAddState(_ sender: UIButton) {
         showAlertForItem(nil)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

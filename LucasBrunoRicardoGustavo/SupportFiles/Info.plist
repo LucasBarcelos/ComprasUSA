@@ -8,6 +8,12 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Permissão para usar a câmera</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Permissão para acessar a galeria</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Permissão para acessar a galeria</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

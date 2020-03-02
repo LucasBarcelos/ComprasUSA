@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import CoreData
 
 class ProductListTableViewController: UITableViewController {
 
@@ -15,18 +16,15 @@ class ProductListTableViewController: UITableViewController {
     
     
     // MARK: - Properties
+    var fetchedResultsController: NSFetchedResultsController<Product>!
     
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadProducts()
 
         self.tableView.delegate = self
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -36,8 +34,7 @@ class ProductListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let product = [String]()
-        if product.count > 0 {
+        if fetchedResultsController.fetchedObjects?.count ?? 0 > 0 {
             return 1
         } else {
             emptyMessage(message: "Sua lista está vazia!", viewController: self)
@@ -45,15 +42,16 @@ class ProductListTableViewController: UITableViewController {
         }
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProductTableViewCell
+        
+        let product = fetchedResultsController.object(at: indexPath)
+        
+        cell.prepare(with: product)
+        return cell
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -114,5 +112,26 @@ class ProductListTableViewController: UITableViewController {
         viewController.tableView.backgroundView = messageLabel
         viewController.tableView.separatorStyle = .none
     }
+    
+    private func loadProducts() {
+        
+        let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        fetchedResultsController.delegate = self
+        
+        try? fetchedResultsController.performFetch()
+    }
 
+}
+
+extension ProductListTableViewController: NSFetchedResultsControllerDelegate {
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        tableView.reloadData()
+    }
 }

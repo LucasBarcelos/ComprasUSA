@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import CoreData
 
 class RegisterProduct: UIViewController {
 
@@ -15,21 +16,43 @@ class RegisterProduct: UIViewController {
     @IBOutlet weak var tfProductName: UITextField!
     @IBOutlet weak var imgPoster: UIImageView!
     @IBOutlet weak var imgButton: UIButton!
-    @IBOutlet weak var tfStates: UITextField!
+    @IBOutlet weak var tfState: UITextField!
     @IBOutlet weak var tfPrice: UITextField!
     @IBOutlet weak var switchCreditCard: UISwitch!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     // MARK: - Properties
-    
+    var product: Product?
+    let notificationCenter = NotificationCenter.default
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.hideKeyboardWhenTappedAround()
+        self.tfProductName.delegate = self
+        self.tfState.delegate = self
+        self.tfPrice.delegate = self
+        
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     // MARK: - Navigation
+   @objc func adjustForKeyboard(notification: Notification) {
+       guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+       let keyboardScreenEndFrame = keyboardValue.cgRectValue
+       let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+
+       if notification.name == UIResponder.keyboardWillHideNotification {
+            scrollView.contentInset = .zero
+       } else {
+            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
+       }
+
+       scrollView.scrollIndicatorInsets = scrollView.contentInset
+   }
 
     
     // MARK: - Methods
@@ -38,9 +61,13 @@ class RegisterProduct: UIViewController {
         imagePicker.sourceType = sourceType
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
-        
     }
     
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+
     // MARK: - Actions
     @IBAction func imgButton(_ sender: UIButton) {
         let alert = UIAlertController(title: "Selecionar poster", message: "De onde você desejar escolher o poster?", preferredStyle: .actionSheet)
@@ -70,8 +97,18 @@ class RegisterProduct: UIViewController {
     }
     
     @IBAction func btnRegister(_ sender: UIButton) {
+        if product == nil {
+            product = Product(context: context)
+        }
+        product?.name = tfProductName.text
+        product?.poster = imgPoster.image
+        product?.owner?.state = tfState.text
+        product?.price = Double(tfPrice.text!) ?? 0
+        product?.card = switchCreditCard.isOn
+        
+        try? context.save()
+        navigationController?.popViewController(animated: true)
     }
-    
 }
 
 extension RegisterProduct: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -96,5 +133,12 @@ extension RegisterProduct: UIImagePickerControllerDelegate, UINavigationControll
         
         dismiss(animated: true, completion: nil)
         
+    }
+}
+
+extension RegisterProduct: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+         textField.resignFirstResponder()
+        return true
     }
 }

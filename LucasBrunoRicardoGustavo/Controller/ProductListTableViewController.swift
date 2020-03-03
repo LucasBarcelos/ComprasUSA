@@ -26,6 +26,11 @@ class ProductListTableViewController: UITableViewController {
 
         self.tableView.delegate = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        loadProducts()
+    }
 
     // MARK: - Table view data source
 
@@ -35,7 +40,7 @@ class ProductListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if fetchedResultsController.fetchedObjects?.count ?? 0 > 0 {
-            return 1
+            return fetchedResultsController.fetchedObjects?.count ?? 0
         } else {
             emptyMessage(message: "Sua lista está vazia!", viewController: self)
             return 0
@@ -48,8 +53,6 @@ class ProductListTableViewController: UITableViewController {
         let product = fetchedResultsController.object(at: indexPath)
         
         cell.prepare(with: product)
-        return cell
-
         return cell
     }
 
@@ -103,7 +106,6 @@ class ProductListTableViewController: UITableViewController {
         let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
         let messageLabel = UILabel(frame: rect)
         messageLabel.text = message
-        messageLabel.textColor = UIColor.black
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
         messageLabel.font = .systemFont(ofSize: 16)
@@ -124,8 +126,8 @@ class ProductListTableViewController: UITableViewController {
         fetchedResultsController.delegate = self
         
         try? fetchedResultsController.performFetch()
+        tableView.reloadData()
     }
-
 }
 
 extension ProductListTableViewController: NSFetchedResultsControllerDelegate {

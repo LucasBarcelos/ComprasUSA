@@ -97,16 +97,27 @@ class RegisterProduct: UIViewController {
     }
     
     @IBAction func btnRegister(_ sender: UIButton) {
-        if product == nil {
-            product = Product(context: context)
-        }
-        product?.name = tfProductName.text
-        product?.poster = imgPoster.image
-        product?.owner?.state = tfState.text
-        product?.price = Double(tfPrice.text!) ?? 0
-        product?.card = switchCreditCard.isOn
+        if tfProductName.text != "" && !imgPoster.isEqual(UIImage(named: "img_placeholder")) && tfState.text != "" && tfPrice.text != "" {
+            if product == nil {
+                product = Product(context: context)
+            }
+            
+            product?.name = tfProductName.text
+            product?.poster = imgPoster.image
+            product?.owner?.state = tfState.text
+            tfPrice.text = tfPrice.text?.replacingOccurrences(of: ",", with: ".")
+            product?.price = Double(tfPrice.text!) ?? 0
+            product?.card = switchCreditCard.isOn
         
-        try? context.save()
+            try? context.save()
+        } else {
+            let alert = UIAlertController(title: "Atenção", message: "Você precisa preencher todos os campos para poder concluir o cadastro!", preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "Entendi", style: .default, handler: nil)
+            
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        }
         navigationController?.popViewController(animated: true)
     }
 }

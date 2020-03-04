@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A035CB3A240C858C007AAE1A /* UIViewController+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A035CB39240C858C007AAE1A /* UIViewController+HideKeyboard.swift */; };
+		A035CB3C240F5766007AAE1A /* UIImageView+EqualImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A035CB3B240F5766007AAE1A /* UIImageView+EqualImage.swift */; };
+		A035CB40240F67C7007AAE1A /* StateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A035CB3F240F67C7007AAE1A /* StateTableViewCell.swift */; };
 		A069EC3F240A0E98009DD533 /* ProductListTableViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B53240A035100D17C30 /* ProductListTableViewController.swift */; };
 		A069EC40240A0E98009DD533 /* RegisterProductVC.swift in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B55240A0D8B00D17C30 /* RegisterProductVC.swift */; };
 		A069EC42240A179E009DD533 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069EC41240A179E009DD533 /* SettingsVC.swift */; };
@@ -27,6 +29,8 @@
 
 /* Begin PBXFileReference section */
 		A035CB39240C858C007AAE1A /* UIViewController+HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideKeyboard.swift"; sourceTree = "<group>"; };
+		A035CB3B240F5766007AAE1A /* UIImageView+EqualImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+EqualImage.swift"; sourceTree = "<group>"; };
+		A035CB3F240F67C7007AAE1A /* StateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTableViewCell.swift; sourceTree = "<group>"; };
 		A069EC41240A179E009DD533 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		A069EC43240A1C26009DD533 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A069EC47240C6E5F009DD533 /* UIViewController+Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Context.swift"; sourceTree = "<group>"; };
@@ -67,8 +71,9 @@
 			isa = PBXGroup;
 			children = (
 				A069EC47240C6E5F009DD533 /* UIViewController+Context.swift */,
-				A069EC4C240C7145009DD533 /* Product+image.swift */,
 				A035CB39240C858C007AAE1A /* UIViewController+HideKeyboard.swift */,
+				A069EC4C240C7145009DD533 /* Product+image.swift */,
+				A035CB3B240F5766007AAE1A /* UIImageView+EqualImage.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -77,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				A069EC4A240C7041009DD533 /* ProductTableViewCell.swift */,
+				A035CB3F240F67C7007AAE1A /* StateTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -239,8 +245,10 @@
 				A069EC48240C6E5F009DD533 /* UIViewController+Context.swift in Sources */,
 				A069EC4D240C7145009DD533 /* Product+image.swift in Sources */,
 				A0B93B56240A0D8B00D17C30 /* RegisterProductVC.swift in Sources */,
+				A035CB40240F67C7007AAE1A /* StateTableViewCell.swift in Sources */,
 				A0B93B352408A46500D17C30 /* SceneDelegate.swift in Sources */,
 				A069EC42240A179E009DD533 /* SettingsVC.swift in Sources */,
+				A035CB3C240F5766007AAE1A /* UIImageView+EqualImage.swift in Sources */,
 				A035CB3A240C858C007AAE1A /* UIViewController+HideKeyboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

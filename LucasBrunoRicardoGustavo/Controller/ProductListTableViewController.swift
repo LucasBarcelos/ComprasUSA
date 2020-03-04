@@ -12,9 +12,6 @@ import CoreData
 
 class ProductListTableViewController: UITableViewController {
 
-    // MARK: - Outlets
-    
-    
     // MARK: - Properties
     var fetchedResultsController: NSFetchedResultsController<Product>!
     
@@ -22,8 +19,8 @@ class ProductListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadProducts()
-
         self.tableView.delegate = self
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,29 +35,6 @@ class ProductListTableViewController: UITableViewController {
                 vc.product = fetchedResultsController.object(at: tableView.indexPathForSelectedRow!)
             }
         }
-    }
-
-    // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if fetchedResultsController.fetchedObjects?.count ?? 0 > 0 {
-            return fetchedResultsController.fetchedObjects?.count ?? 0
-        } else {
-            emptyMessage(message: "Sua lista está vazia!", viewController: self)
-            return 0
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProductTableViewCell
-        
-        let product = fetchedResultsController.object(at: indexPath)
-        
-        cell.prepare(with: product)
-        return cell
     }
 
     // MARK: - Methods
@@ -97,5 +71,31 @@ extension ProductListTableViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
         tableView.reloadData()
+    }
+}
+
+extension ProductListTableViewController {
+    
+    // MARK: - Table view data source
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if fetchedResultsController.fetchedObjects?.count ?? 0 > 0 {
+            return fetchedResultsController.fetchedObjects?.count ?? 0
+        } else {
+            emptyMessage(message: "Sua lista está vazia!", viewController: self)
+            return 0
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProductTableViewCell
+        
+        let product = fetchedResultsController.object(at: indexPath)
+        
+        cell.prepare(with: product)
+        return cell
     }
 }

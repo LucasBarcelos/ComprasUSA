@@ -24,6 +24,8 @@ class RegisterProduct: UIViewController {
     
     // MARK: - Properties
     var product: Product?
+    var stateName: [State]?
+    var fetchedResultsController: NSFetchedResultsController<State>?
     let notificationCenter = NotificationCenter.default
     
     // MARK: - View Life Cycle
@@ -32,37 +34,17 @@ class RegisterProduct: UIViewController {
         
         self.hideKeyboardWhenTappedAround()
         self.tfProductName.delegate = self
-        self.tfState.delegate = self
         self.tfPrice.delegate = self
-        
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        
-        if product != nil {
-            self.tfProductName.text = product?.name
-            self.imgPoster.image = product?.image
-            self.tfState.text = product?.owner?.state
-            self.tfPrice.text = "\(product?.price ?? 0.0)"
-            self.btnRegister.setTitle("ALTERAR", for: .normal)
-        }
+        loadStates()
+        createPickerView()
+        registerNotifications()
+        validateEditing()
     }
     
-    // MARK: - Navigation
-   @objc func adjustForKeyboard(notification: Notification) {
-       guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-
-       let keyboardScreenEndFrame = keyboardValue.cgRectValue
-       let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-
-       if notification.name == UIResponder.keyboardWillHideNotification {
-            scrollView.contentInset = .zero
-       } else {
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
-       }
-
-       scrollView.scrollIndicatorInsets = scrollView.contentInset
-   }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        loadStates()
+    }
     
     // MARK: - Methods
     func selectPicture(sourceType: UIImagePickerController.SourceType) {
@@ -75,6 +57,50 @@ class RegisterProduct: UIViewController {
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+    func registerNotifications() {
+        self.notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        self.notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    func validateEditing() {
+        if product != nil {
+            self.tfProductName.text = product?.name
+            self.imgPoster.image = product?.image
+            self.tfState.text = product?.owner?.state
+            self.tfPrice.text = "\(product?.price ?? 0.0)"
+            self.tfState.text = product?.owner?.state
+            self.btnRegister.setTitle("ALTERAR", for: .normal)
+            self.navigationItem.title = "Editar Cadastro"
+        }
+    }
+    
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+
+        if notification.name == UIResponder.keyboardWillHideNotification {
+             scrollView.contentInset = .zero
+        } else {
+             scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
+        }
+
+        scrollView.scrollIndicatorInsets = scrollView.contentInset
+    }
+    
+    private func loadStates() {
+        let fetchRequest: NSFetchRequest<State> = State.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "state", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        fetchedResultsController?.delegate = self
+        
+        try? fetchedResultsController?.performFetch()
     }
 
     // MARK: - Actions
@@ -99,20 +125,19 @@ class RegisterProduct: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func btnAddStates(_ sender: UIButton) {
-    }
-    
     @IBAction func switchCreditCard(_ sender: UISwitch) {
     }
     
     @IBAction func btnRegister(_ sender: UIButton) {
-        if tfProductName.text != "" && !imgPoster.isEqual(UIImage(named: "img_placeholder")) && tfState.text != "" && tfPrice.text != "" {
+        guard let imgPoster = imgPoster.image else { return }
+        
+        if tfProductName.text != "" && !imgPoster.isEqualToImage(#imageLiteral(resourceName: "img_placeholder")) && tfState.text != "" && tfPrice.text != "" {
             if product == nil {
                 product = Product(context: context)
             }
             
             product?.name = tfProductName.text
-            product?.poster = imgPoster.image
+            product?.poster = imgPoster
             product?.owner?.state = tfState.text
             tfPrice.text = tfPrice.text?.replacingOccurrences(of: ",", with: ".")
             product?.price = Double(tfPrice.text!) ?? 0
@@ -160,5 +185,50 @@ extension RegisterProduct: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
          textField.resignFirstResponder()
         return true
+    }
+}
+
+extension RegisterProduct: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return fetchedResultsController?.fetchedObjects?.count ?? 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        stateName = fetchedResultsController?.fetchedObjects
+        return stateName?[row].state
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        tfState.text = stateName?[row].state
+    }
+    
+    func createPickerView() {
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        self.tfState.inputView = pickerView
+        dismissPickerView()
+    }
+    
+    func dismissPickerView() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.action))
+        toolBar.setItems([button], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        self.tfState.inputAccessoryView = toolBar
+    }
+    
+    @objc func action() {
+        view.endEditing(true)
+    }
+}
+
+extension RegisterProduct: NSFetchedResultsControllerDelegate {
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
     }
 }

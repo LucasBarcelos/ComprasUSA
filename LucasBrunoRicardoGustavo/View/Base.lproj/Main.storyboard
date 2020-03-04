@@ -50,15 +50,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="z3m-Pi-vH6">
-                                <rect key="frame" x="20" y="255.5" width="335" height="292.5"/>
+                                <rect key="frame" x="0.0" y="255.5" width="375" height="292.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="stateCell" textLabel="hbB-X3-FDd" detailTextLabel="tXQ-kY-gin" style="IBUITableViewCellStyleValue1" id="Uo4-R8-VA8">
-                                        <rect key="frame" x="0.0" y="28" width="335" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="stateCell" textLabel="hbB-X3-FDd" detailTextLabel="tXQ-kY-gin" style="IBUITableViewCellStyleValue1" id="Uo4-R8-VA8" customClass="StateTableViewCell" customModule="ComprasUSA" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Uo4-R8-VA8" id="fhw-q0-jpQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hbB-X3-FDd">
@@ -69,7 +69,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tXQ-kY-gin">
-                                                    <rect key="frame" x="276" y="12" width="44" height="20.5"/>
+                                                    <rect key="frame" x="316" y="12" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -77,8 +77,16 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lbStateName" destination="hbB-X3-FDd" id="F1X-Ki-Ilw"/>
+                                            <outlet property="lbTax" destination="tXQ-kY-gin" id="O5H-3m-F3Z"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="lNH-Dg-e8g" id="Wz0-cx-f9d"/>
+                                    <outlet property="delegate" destination="lNH-Dg-e8g" id="x5A-aN-Gbt"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HBX-2W-CBe">
                                 <rect key="frame" x="240" y="568" width="115" height="30"/>
@@ -90,7 +98,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="z3m-Pi-vH6" firstAttribute="leading" secondItem="r6U-xa-Btr" secondAttribute="leading" constant="20" id="825-29-HXz"/>
+                            <constraint firstItem="z3m-Pi-vH6" firstAttribute="leading" secondItem="r6U-xa-Btr" secondAttribute="leading" id="825-29-HXz"/>
                             <constraint firstItem="hzg-Op-WnO" firstAttribute="top" secondItem="fMQ-em-u5Q" secondAttribute="bottom" constant="50" id="8Q0-nl-rmp"/>
                             <constraint firstItem="r6U-xa-Btr" firstAttribute="trailing" secondItem="fwz-ef-9x9" secondAttribute="trailing" constant="20" id="B9l-oJ-CTP"/>
                             <constraint firstItem="hzg-Op-WnO" firstAttribute="centerX" secondItem="eGf-2B-8Ej" secondAttribute="centerX" id="CnN-bc-r1T"/>
@@ -101,7 +109,7 @@
                             <constraint firstItem="HBX-2W-CBe" firstAttribute="top" secondItem="z3m-Pi-vH6" secondAttribute="bottom" constant="20" id="b5T-vh-GUI"/>
                             <constraint firstItem="r6U-xa-Btr" firstAttribute="trailing" secondItem="aQT-As-bMC" secondAttribute="trailing" constant="20" id="bjr-vc-TGP"/>
                             <constraint firstItem="aQT-As-bMC" firstAttribute="leading" secondItem="skO-Sg-Cz1" secondAttribute="trailing" constant="20" id="cQ1-Fy-4Bi"/>
-                            <constraint firstItem="r6U-xa-Btr" firstAttribute="trailing" secondItem="z3m-Pi-vH6" secondAttribute="trailing" constant="20" id="h67-6c-PEr"/>
+                            <constraint firstItem="r6U-xa-Btr" firstAttribute="trailing" secondItem="z3m-Pi-vH6" secondAttribute="trailing" id="h67-6c-PEr"/>
                             <constraint firstAttribute="trailing" secondItem="HBX-2W-CBe" secondAttribute="trailing" constant="20" id="hwL-Cr-G5V"/>
                             <constraint firstItem="skO-Sg-Cz1" firstAttribute="leading" secondItem="r6U-xa-Btr" secondAttribute="leading" constant="20" id="is0-c2-8Lh"/>
                             <constraint firstItem="aQT-As-bMC" firstAttribute="centerY" secondItem="skO-Sg-Cz1" secondAttribute="centerY" id="nxl-T7-bgr"/>
@@ -211,6 +219,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                         <color key="sectionIndexColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                         <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -336,7 +345,6 @@
                                                 <rect key="frame" x="330" y="286" width="25" height="24"/>
                                                 <state key="normal" image="plus.circle" catalog="system"/>
                                                 <connections>
-                                                    <action selector="btnAddStates:" destination="pX9-uE-xzu" eventType="touchUpInside" id="dwT-JD-YsF"/>
                                                     <segue destination="lNH-Dg-e8g" kind="show" id="5OI-6N-U4U"/>
                                                 </connections>
                                             </button>

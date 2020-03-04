@@ -256,6 +256,7 @@
                                     <outlet property="ivPoster" destination="zsD-Qh-of9" id="8lw-26-oMS"/>
                                     <outlet property="lbPrice" destination="vKM-Gb-qxz" id="mqb-yc-7xQ"/>
                                     <outlet property="lbProduct" destination="HTV-rC-yjg" id="mBd-as-2WE"/>
+                                    <segue destination="pX9-uE-xzu" kind="show" identifier="cellToEdit" id="LLg-Ya-VYV"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -420,6 +421,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Cadastrar Produto" id="N6T-rU-gih"/>
                     <connections>
+                        <outlet property="btnRegister" destination="aI5-ur-7iC" id="c7q-lp-elL"/>
                         <outlet property="imgButton" destination="gtT-rI-cFf" id="MnI-27-10a"/>
                         <outlet property="imgPoster" destination="qgc-ZX-8mq" id="Zn9-xm-OzB"/>
                         <outlet property="scrollView" destination="Qal-gg-dNO" id="WiY-ct-XyU"/>
@@ -460,6 +462,7 @@
         <image name="plus.circle" catalog="system" width="64" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="LLg-Ya-VYV"/>
         <segue reference="5OI-6N-U4U"/>
     </inferredMetricsTieBreakers>
 </document>

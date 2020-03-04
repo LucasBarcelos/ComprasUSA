@@ -20,6 +20,7 @@ class RegisterProduct: UIViewController {
     @IBOutlet weak var tfPrice: UITextField!
     @IBOutlet weak var switchCreditCard: UISwitch!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var btnRegister: UIButton!
     
     // MARK: - Properties
     var product: Product?
@@ -36,6 +37,14 @@ class RegisterProduct: UIViewController {
         
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        
+        if product != nil {
+            self.tfProductName.text = product?.name
+            self.imgPoster.image = product?.image
+            self.tfState.text = product?.owner?.state
+            self.tfPrice.text = "\(product?.price ?? 0.0)"
+            self.btnRegister.setTitle("ALTERAR", for: .normal)
+        }
     }
     
     // MARK: - Navigation

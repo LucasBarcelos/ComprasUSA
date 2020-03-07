@@ -17,7 +17,6 @@ class SettingsVC: UIViewController {
     @IBOutlet weak var tableViewStates: UITableView!
     
     // MARK: - Properties
-    var states: State!
     var fetchedResultsController: NSFetchedResultsController<State>!
     
     // MARK: - View Life Cycle
@@ -65,11 +64,10 @@ class SettingsVC: UIViewController {
     
     func addState(stateName: String, tax: Double) {
         if stateName != "" {
-            if states == nil {
-                states = State(context: context)
-            }
+            let states = State(context: context)
             states.state = stateName
             states.tax = tax
+            self.context.insert(states)
             try? context.save()
             tableViewStates.reloadData()
         } else {
@@ -84,7 +82,7 @@ class SettingsVC: UIViewController {
     
     private func loadStates() {
         let fetchRequest: NSFetchRequest<State> = State.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "state", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "state", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
@@ -125,6 +123,7 @@ extension SettingsVC: UITableViewDataSource, UITableViewDelegate {
             let state = fetchedResultsController.object(at: indexPath)
             context.delete(state)
             try? context.save()
+            loadStates()
         }
     }
 }

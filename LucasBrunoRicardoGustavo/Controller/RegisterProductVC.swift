@@ -24,7 +24,6 @@ class RegisterProduct: UIViewController {
     
     // MARK: - Properties
     var product: Product?
-    var stateName: [State]?
     var fetchedResultsController: NSFetchedResultsController<State>?
     let notificationCenter = NotificationCenter.default
     
@@ -68,9 +67,8 @@ class RegisterProduct: UIViewController {
         if product != nil {
             self.tfProductName.text = product?.name
             self.imgPoster.image = product?.image
-            self.tfState.text = product?.owner?.state
+            self.tfState.text = self.product?.state?.state
             self.tfPrice.text = "\(product?.price ?? 0.0)"
-            self.tfState.text = product?.owner?.state
             self.btnRegister.setTitle("ALTERAR", for: .normal)
             self.navigationItem.title = "Editar Cadastro"
         }
@@ -93,7 +91,7 @@ class RegisterProduct: UIViewController {
     
     private func loadStates() {
         let fetchRequest: NSFetchRequest<State> = State.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "state", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "state", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
@@ -101,6 +99,44 @@ class RegisterProduct: UIViewController {
         fetchedResultsController?.delegate = self
         
         try? fetchedResultsController?.performFetch()
+    }
+    
+    func insertData() {
+        guard let imgPoster = imgPoster.image,
+            let states = fetchedResultsController?.fetchedObjects else { return }
+        
+        if tfProductName.text != "" && !imgPoster.isEqualToImage(#imageLiteral(resourceName: "img_placeholder")) && tfState.text != "" && tfPrice.text != "" {
+            if product == nil {
+                product = Product(context: context)
+            }
+            
+            guard let product = product else { return }
+            
+            product.name = tfProductName.text
+            product.poster = imgPoster
+            tfPrice.text = tfPrice.text?.replacingOccurrences(of: ",", with: ".")
+            product.price = Double(tfPrice.text!) ?? 0
+            product.card = switchCreditCard.isOn
+            
+            for state in states {
+                if state.state == tfState.text {
+                    state.addToProducts(product)
+                    self.context.insert(product)
+                    try? context.save()
+                }
+            }
+            
+            try? context.save()
+
+        } else {
+            let alert = UIAlertController(title: "Atenção", message: "Você precisa preencher todos os campos para poder concluir o cadastro!", preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "Entendi", style: .default, handler: nil)
+            
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        }
+        navigationController?.popViewController(animated: true)
     }
 
     // MARK: - Actions
@@ -129,30 +165,7 @@ class RegisterProduct: UIViewController {
     }
     
     @IBAction func btnRegister(_ sender: UIButton) {
-        guard let imgPoster = imgPoster.image else { return }
-        
-        if tfProductName.text != "" && !imgPoster.isEqualToImage(#imageLiteral(resourceName: "img_placeholder")) && tfState.text != "" && tfPrice.text != "" {
-            if product == nil {
-                product = Product(context: context)
-            }
-            
-            product?.name = tfProductName.text
-            product?.poster = imgPoster
-            product?.owner?.state = tfState.text
-            tfPrice.text = tfPrice.text?.replacingOccurrences(of: ",", with: ".")
-            product?.price = Double(tfPrice.text!) ?? 0
-            product?.card = switchCreditCard.isOn
-        
-            try? context.save()
-        } else {
-            let alert = UIAlertController(title: "Atenção", message: "Você precisa preencher todos os campos para poder concluir o cadastro!", preferredStyle: .alert)
-            
-            let action = UIAlertAction(title: "Entendi", style: .default, handler: nil)
-            
-            alert.addAction(action)
-            present(alert, animated: true, completion: nil)
-        }
-        navigationController?.popViewController(animated: true)
+        self.insertData()
     }
 }
 
@@ -198,12 +211,11 @@ extension RegisterProduct: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        stateName = fetchedResultsController?.fetchedObjects
-        return stateName?[row].state
+        return fetchedResultsController?.fetchedObjects?[row].state
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        tfState.text = stateName?[row].state
+        tfState.text = fetchedResultsController?.fetchedObjects?[row].state
     }
     
     func createPickerView() {

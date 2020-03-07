@@ -38,7 +38,7 @@ class ProductListTableViewController: UITableViewController {
     }
 
     // MARK: - Methods
-    func emptyMessage(message:String, viewController:UITableViewController) {
+    func emptyMessage(message:String? = nil, viewController:UITableViewController) {
         let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
         let messageLabel = UILabel(frame: rect)
         messageLabel.text = message
@@ -48,7 +48,11 @@ class ProductListTableViewController: UITableViewController {
         messageLabel.sizeToFit()
         
         viewController.tableView.backgroundView = messageLabel
-        viewController.tableView.separatorStyle = .none
+        if message != nil {
+            viewController.tableView.separatorStyle = .none
+        } else {
+            viewController.tableView.separatorStyle = .singleLine
+        }
     }
     
     private func loadProducts() {
@@ -83,6 +87,7 @@ extension ProductListTableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if fetchedResultsController.fetchedObjects?.count ?? 0 > 0 {
+            emptyMessage(viewController: self)
             return fetchedResultsController.fetchedObjects?.count ?? 0
         } else {
             emptyMessage(message: "Sua lista está vazia!", viewController: self)

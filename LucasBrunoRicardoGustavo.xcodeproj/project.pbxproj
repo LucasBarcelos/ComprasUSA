@@ -10,6 +10,10 @@
 		A035CB3A240C858C007AAE1A /* UIViewController+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A035CB39240C858C007AAE1A /* UIViewController+HideKeyboard.swift */; };
 		A035CB3C240F5766007AAE1A /* UIImageView+EqualImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A035CB3B240F5766007AAE1A /* UIImageView+EqualImage.swift */; };
 		A035CB40240F67C7007AAE1A /* StateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A035CB3F240F67C7007AAE1A /* StateTableViewCell.swift */; };
+		A035CB4D2411C6B9007AAE1A /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A035CB492411C6B9007AAE1A /* Product+CoreDataClass.swift */; };
+		A035CB4E2411C6B9007AAE1A /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A035CB4A2411C6B9007AAE1A /* Product+CoreDataProperties.swift */; };
+		A035CB4F2411C6B9007AAE1A /* State+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A035CB4B2411C6B9007AAE1A /* State+CoreDataClass.swift */; };
+		A035CB502411C6B9007AAE1A /* State+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A035CB4C2411C6B9007AAE1A /* State+CoreDataProperties.swift */; };
 		A069EC3F240A0E98009DD533 /* ProductListTableViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B53240A035100D17C30 /* ProductListTableViewController.swift */; };
 		A069EC40240A0E98009DD533 /* RegisterProductVC.swift in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B55240A0D8B00D17C30 /* RegisterProductVC.swift */; };
 		A069EC42240A179E009DD533 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069EC41240A179E009DD533 /* SettingsVC.swift */; };
@@ -18,19 +22,23 @@
 		A069EC4B240C7041009DD533 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069EC4A240C7041009DD533 /* ProductTableViewCell.swift */; };
 		A069EC4D240C7145009DD533 /* Product+image.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069EC4C240C7145009DD533 /* Product+image.swift */; };
 		A0B93B332408A46500D17C30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B93B322408A46500D17C30 /* AppDelegate.swift */; };
-		A0B93B352408A46500D17C30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B93B342408A46500D17C30 /* SceneDelegate.swift */; };
 		A0B93B3A2408A46500D17C30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B382408A46500D17C30 /* Main.storyboard */; };
 		A0B93B3D2408A46500D17C30 /* LucasBrunoRicardoGustavo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A0B93B3B2408A46500D17C30 /* LucasBrunoRicardoGustavo.xcdatamodeld */; };
 		A0B93B422408A46700D17C30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B402408A46700D17C30 /* LaunchScreen.storyboard */; };
 		A0B93B522408B40000D17C30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B512408B40000D17C30 /* Assets.xcassets */; };
 		A0B93B54240A035100D17C30 /* ProductListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B93B53240A035100D17C30 /* ProductListTableViewController.swift */; };
 		A0B93B56240A0D8B00D17C30 /* RegisterProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B93B55240A0D8B00D17C30 /* RegisterProductVC.swift */; };
+		A0F262A924142DCA00EC7791 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F262A824142DCA00EC7791 /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A035CB39240C858C007AAE1A /* UIViewController+HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideKeyboard.swift"; sourceTree = "<group>"; };
 		A035CB3B240F5766007AAE1A /* UIImageView+EqualImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+EqualImage.swift"; sourceTree = "<group>"; };
 		A035CB3F240F67C7007AAE1A /* StateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTableViewCell.swift; sourceTree = "<group>"; };
+		A035CB492411C6B9007AAE1A /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A035CB4A2411C6B9007AAE1A /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A035CB4B2411C6B9007AAE1A /* State+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "State+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A035CB4C2411C6B9007AAE1A /* State+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "State+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A069EC41240A179E009DD533 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		A069EC43240A1C26009DD533 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A069EC47240C6E5F009DD533 /* UIViewController+Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Context.swift"; sourceTree = "<group>"; };
@@ -38,7 +46,6 @@
 		A069EC4C240C7145009DD533 /* Product+image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+image.swift"; sourceTree = "<group>"; };
 		A0B93B2F2408A46500D17C30 /* ComprasUSA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComprasUSA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0B93B322408A46500D17C30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A0B93B342408A46500D17C30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A0B93B392408A46500D17C30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A0B93B3C2408A46500D17C30 /* LucasBrunoRicardoGustavo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LucasBrunoRicardoGustavo.xcdatamodel; sourceTree = "<group>"; };
 		A0B93B412408A46700D17C30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -46,6 +53,7 @@
 		A0B93B512408B40000D17C30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0B93B53240A035100D17C30 /* ProductListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListTableViewController.swift; sourceTree = "<group>"; };
 		A0B93B55240A0D8B00D17C30 /* RegisterProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProductVC.swift; sourceTree = "<group>"; };
+		A0F262A824142DCA00EC7791 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/SceneDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,8 +129,8 @@
 				A069EC43240A1C26009DD533 /* Settings.bundle */,
 				A0B93B4A2408A4DD00D17C30 /* Resources */,
 				A0B93B302408A46500D17C30 /* Products */,
-				A0B93B342408A46500D17C30 /* SceneDelegate.swift */,
 				A0B93B322408A46500D17C30 /* AppDelegate.swift */,
+				A0F262A824142DCA00EC7791 /* SceneDelegate.swift */,
 				A0B93B432408A46700D17C30 /* Info.plist */,
 			);
 			path = SupportFiles;
@@ -139,6 +147,10 @@
 		A0B93B4B2408A6B700D17C30 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A035CB492411C6B9007AAE1A /* Product+CoreDataClass.swift */,
+				A035CB4A2411C6B9007AAE1A /* Product+CoreDataProperties.swift */,
+				A035CB4B2411C6B9007AAE1A /* State+CoreDataClass.swift */,
+				A035CB4C2411C6B9007AAE1A /* State+CoreDataProperties.swift */,
 				A0B93B3B2408A46500D17C30 /* LucasBrunoRicardoGustavo.xcdatamodeld */,
 			);
 			path = Model;
@@ -243,10 +255,14 @@
 				A0B93B332408A46500D17C30 /* AppDelegate.swift in Sources */,
 				A0B93B54240A035100D17C30 /* ProductListTableViewController.swift in Sources */,
 				A069EC48240C6E5F009DD533 /* UIViewController+Context.swift in Sources */,
+				A035CB502411C6B9007AAE1A /* State+CoreDataProperties.swift in Sources */,
 				A069EC4D240C7145009DD533 /* Product+image.swift in Sources */,
+				A0F262A924142DCA00EC7791 /* SceneDelegate.swift in Sources */,
 				A0B93B56240A0D8B00D17C30 /* RegisterProductVC.swift in Sources */,
+				A035CB4D2411C6B9007AAE1A /* Product+CoreDataClass.swift in Sources */,
 				A035CB40240F67C7007AAE1A /* StateTableViewCell.swift in Sources */,
-				A0B93B352408A46500D17C30 /* SceneDelegate.swift in Sources */,
+				A035CB4F2411C6B9007AAE1A /* State+CoreDataClass.swift in Sources */,
+				A035CB4E2411C6B9007AAE1A /* Product+CoreDataProperties.swift in Sources */,
 				A069EC42240A179E009DD533 /* SettingsVC.swift in Sources */,
 				A035CB3C240F5766007AAE1A /* UIImageView+EqualImage.swift in Sources */,
 				A035CB3A240C858C007AAE1A /* UIViewController+HideKeyboard.swift in Sources */,

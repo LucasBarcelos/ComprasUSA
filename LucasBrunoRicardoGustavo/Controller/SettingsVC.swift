@@ -44,29 +44,53 @@ class SettingsVC: UIViewController {
         UserDefaults.standard.register(defaults: appDefaults)
     }
     
-    func showAlertForItem(_ item: State?) {
-        let alert = UIAlertController(title: "Adicionar Estado", message: "", preferredStyle: .alert)
+    func showAlertForItem(_ item: State?, index: Int? = nil) {
+        
+        var title: String
+        
+        if item != nil {
+            title = "Editar"
+        } else {
+            title = "Adicionar"
+        }
+        let alert = UIAlertController(title: "\(title) Estado", message: "", preferredStyle: .alert)
         
         alert.addTextField { (textFieldState) in
-            textFieldState.placeholder = "Nome do estado"
-//            textField.text = item?.state
+            
+            if item != nil {
+                textFieldState.text = item?.state
+            } else {
+                textFieldState.placeholder = "Nome do estado"
+            }
+            
         }
+        
         alert.addTextField { (textFieldTax) in
-            textFieldTax.placeholder = "Imposto"
             textFieldTax.keyboardType = .decimalPad
-//            textField.text = String(describing: item?.tax)
+            
+            if item != nil {
+                guard let state = item else { return }
+                textFieldTax.text = "\(state.tax)"
+            } else {
+                textFieldTax.placeholder = "Imposto"
+            }
+
         }
         
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
         
-        let addStateAction = UIAlertAction(title: "Adicionar", style: .default) { (_) in
+        let addStateAction = UIAlertAction(title: "\(title)", style: .default) { (_) in
             alert.textFields?.last?.text = alert.textFields?.last?.text?.replacingOccurrences(of: ",", with: ".")
             
             guard let name = alert.textFields?.first?.text,
             let tax = alert.textFields?.last?.text else { return }
             
-            self.addState(stateName: name, tax: Double(tax) ?? 0)
+            if item != nil {
+                self.updateStateCoreData(index: index ?? 0, taxValue: tax, stateName: name)
+            } else {
+                self.addState(stateName: name, tax: Double(tax) ?? 0)
+            }
         }
         alert.addAction(addStateAction)
         
@@ -104,6 +128,18 @@ class SettingsVC: UIViewController {
         tableViewStates.reloadData()
     }
     
+    private func updateStateCoreData(index: Int, taxValue: String, stateName: String) {
+        guard let states = fetchedResultsController.fetchedObjects else { return }
+        
+        let updateState = states[index]
+        
+        updateState.setValue(stateName, forKey: "state")
+        updateState.setValue(Double(taxValue), forKey: "tax")
+        try? context.save()
+
+        loadStates()
+    }
+    
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
         self.view.endEditing(true)
         return false
@@ -132,6 +168,12 @@ extension SettingsVC: UITableViewDataSource, UITableViewDelegate {
 
         cell.prepare(with: state)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let state = fetchedResultsController.object(at: indexPath)
+        
+        showAlertForItem(state, index: indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

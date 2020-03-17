@@ -28,5 +28,12 @@ class SettingsBundleHelper {
         let defaults = UserDefaults.standard
         defaults.set(value, forKey: defaultKey)
     }
+    
+    class func validateDefaultValues() {
+        let defaults = UserDefaults.standard
+        if defaults.object(forKey: "IOF") == nil || defaults.object(forKey: "Dolar") == nil {
+            setDefaultValueDollarAndIOF()
+        }
+    }
 }
 

@@ -56,7 +56,6 @@ class ProductListTableViewController: UITableViewController {
     }
     
     private func loadProducts() {
-        
         let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]

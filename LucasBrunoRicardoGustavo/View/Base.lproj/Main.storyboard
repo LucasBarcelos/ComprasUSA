@@ -133,7 +133,7 @@
         <!--Total de Compra-->
         <scene sceneID="Q9c-IZ-H3M">
             <objects>
-                <viewController id="p14-0W-m2I" sceneMemberID="viewController">
+                <viewController id="p14-0W-m2I" customClass="ResultVC" customModule="ComprasUSA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ubG-Mu-kmJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -187,6 +187,10 @@
                         <viewLayoutGuide key="safeArea" id="dgB-yh-FCP"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Total de Compra" image="icone_compras" selectedImage="icone_compras" id="Dgm-x9-Vyy"/>
+                    <connections>
+                        <outlet property="lblTotalDollar" destination="whf-fZ-Yxu" id="mIa-jg-g2C"/>
+                        <outlet property="lblTotalReal" destination="W6k-y0-V39" id="heZ-96-UeO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3sp-VM-nNo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -21,6 +21,7 @@
 		A069EC48240C6E5F009DD533 /* UIViewController+Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069EC47240C6E5F009DD533 /* UIViewController+Context.swift */; };
 		A069EC4B240C7041009DD533 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069EC4A240C7041009DD533 /* ProductTableViewCell.swift */; };
 		A069EC4D240C7145009DD533 /* Product+image.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069EC4C240C7145009DD533 /* Product+image.swift */; };
+		A07F5FB42420055A004D5984 /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07F5FB32420055A004D5984 /* SettingsBundleHelper.swift */; };
 		A0B93B332408A46500D17C30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B93B322408A46500D17C30 /* AppDelegate.swift */; };
 		A0B93B3A2408A46500D17C30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0B93B382408A46500D17C30 /* Main.storyboard */; };
 		A0B93B3D2408A46500D17C30 /* LucasBrunoRicardoGustavo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A0B93B3B2408A46500D17C30 /* LucasBrunoRicardoGustavo.xcdatamodeld */; };
@@ -44,6 +45,7 @@
 		A069EC47240C6E5F009DD533 /* UIViewController+Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Context.swift"; sourceTree = "<group>"; };
 		A069EC4A240C7041009DD533 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		A069EC4C240C7145009DD533 /* Product+image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+image.swift"; sourceTree = "<group>"; };
+		A07F5FB32420055A004D5984 /* SettingsBundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBundleHelper.swift; sourceTree = "<group>"; };
 		A0B93B2F2408A46500D17C30 /* ComprasUSA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComprasUSA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0B93B322408A46500D17C30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0B93B392408A46500D17C30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -53,7 +55,7 @@
 		A0B93B512408B40000D17C30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0B93B53240A035100D17C30 /* ProductListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListTableViewController.swift; sourceTree = "<group>"; };
 		A0B93B55240A0D8B00D17C30 /* RegisterProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProductVC.swift; sourceTree = "<group>"; };
-		A0F262A824142DCA00EC7791 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/SceneDelegate.swift"; sourceTree = "<group>"; };
+		A0F262A824142DCA00EC7791 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				A035CB39240C858C007AAE1A /* UIViewController+HideKeyboard.swift */,
 				A069EC4C240C7145009DD533 /* Product+image.swift */,
 				A035CB3B240F5766007AAE1A /* UIImageView+EqualImage.swift */,
+				A07F5FB32420055A004D5984 /* SettingsBundleHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				A035CB40240F67C7007AAE1A /* StateTableViewCell.swift in Sources */,
 				A035CB4F2411C6B9007AAE1A /* State+CoreDataClass.swift in Sources */,
 				A035CB4E2411C6B9007AAE1A /* Product+CoreDataProperties.swift in Sources */,
+				A07F5FB42420055A004D5984 /* SettingsBundleHelper.swift in Sources */,
 				A069EC42240A179E009DD533 /* SettingsVC.swift in Sources */,
 				A035CB3C240F5766007AAE1A /* UIImageView+EqualImage.swift in Sources */,
 				A035CB3A240C858C007AAE1A /* UIViewController+HideKeyboard.swift in Sources */,

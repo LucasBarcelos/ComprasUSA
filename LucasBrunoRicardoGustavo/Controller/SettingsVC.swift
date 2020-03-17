@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 import CoreData
 
 class SettingsVC: UIViewController {
@@ -24,15 +25,25 @@ class SettingsVC: UIViewController {
         super.viewDidLoad()
         loadStates()
         self.tableViewStates.delegate = self
+        self.tfDollarExchangeRate.delegate = self
+        self.tfIOFTax.delegate = self
         tableViewStates.tableFooterView = UIView(frame: CGRect.zero)
+        registerSettingsBundle()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         loadStates()
+        self.tfIOFTax.text = SettingsBundleHelper.getSettingsBundleValues(identifier: "IOF")
+        self.tfDollarExchangeRate.text = SettingsBundleHelper.getSettingsBundleValues(identifier: "Dolar")
     }
 
     // MARK: - Methods
+    func registerSettingsBundle(){
+        let appDefaults = [String:AnyObject]()
+        UserDefaults.standard.register(defaults: appDefaults)
+    }
+    
     func showAlertForItem(_ item: State?) {
         let alert = UIAlertController(title: "Adicionar Estado", message: "", preferredStyle: .alert)
         
@@ -93,6 +104,11 @@ class SettingsVC: UIViewController {
         tableViewStates.reloadData()
     }
     
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
     // MARK: - Actions
     @IBAction func btnAddState(_ sender: UIButton) {
         showAlertForItem(nil)
@@ -133,5 +149,23 @@ extension SettingsVC: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
         tableViewStates.reloadData()
+    }
+}
+
+extension SettingsVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        textField.text = textField.text?.replacingOccurrences(of: ",", with: ".")
+        
+        if textField == tfDollarExchangeRate {
+            SettingsBundleHelper.setApplicationDefault(defaultKey: "Dolar", value: textField.text ?? "")
+        } else if textField == tfIOFTax {
+            SettingsBundleHelper.setApplicationDefault(defaultKey: "IOF", value: textField.text ?? "")
+        }
     }
 }

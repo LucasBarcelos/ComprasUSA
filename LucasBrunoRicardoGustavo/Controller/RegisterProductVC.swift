@@ -65,12 +65,21 @@ class RegisterProduct: UIViewController {
     
     func validateEditing() {
         if product != nil {
-            self.tfProductName.text = product?.name
-            self.imgPoster.image = product?.image
+            
+            guard let prod = product else { return }
+            
+            self.tfProductName.text = prod.name
+            self.imgPoster.image = prod.image
             self.tfState.text = self.product?.state?.state
-            self.tfPrice.text = "\(product?.price ?? 0.0)"
+            self.tfPrice.text = "\(prod.price)"
             self.btnRegister.setTitle("ALTERAR", for: .normal)
             self.navigationItem.title = "Editar Cadastro"
+            
+            if prod.card {
+                self.switchCreditCard.isOn = true
+            } else {
+                self.switchCreditCard.isOn = false
+            }
         }
     }
     
@@ -196,7 +205,7 @@ extension RegisterProduct: UIImagePickerControllerDelegate, UINavigationControll
 
 extension RegisterProduct: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-         textField.resignFirstResponder()
+        textField.resignFirstResponder()
         return true
     }
 }

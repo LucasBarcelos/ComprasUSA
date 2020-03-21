@@ -23,6 +23,7 @@ class SettingsVC: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         loadStates()
         self.tableViewStates.delegate = self
         self.tfDollarExchangeRate.delegate = self

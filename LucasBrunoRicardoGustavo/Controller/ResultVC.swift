@@ -52,9 +52,9 @@ class ResultVC: UIViewController {
             totalDollar = totalDollar + product.price
             
             if product.card {
-                totalRealWithTax = totalRealWithTax + ((product.price * (Double(iof) ?? 0.0)) / 100.0)
                 totalRealWithTax = totalRealWithTax + ((product.price * (product.state?.tax ?? 0.0)) / 100.0)
                 totalRealWithTax = totalRealWithTax + (product.price * (Double(dollar) ?? 0.0))
+                totalRealWithTax = totalRealWithTax + ((totalRealWithTax * (Double(iof) ?? 0.0)) / 100.0)
             } else {
                 totalRealWithTax = totalRealWithTax + ((product.price * (product.state?.tax ?? 0.0)) / 100.0)
                 totalRealWithTax = totalRealWithTax + (product.price * (Double(dollar) ?? 0.0))

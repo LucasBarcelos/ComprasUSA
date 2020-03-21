@@ -114,28 +114,42 @@ class RegisterProduct: UIViewController {
         guard let imgPoster = imgPoster.image,
             let states = fetchedResultsController?.fetchedObjects else { return }
         
-        if tfProductName.text != "" && !imgPoster.isEqualToImage(#imageLiteral(resourceName: "img_placeholder")) && tfState.text != "" && tfPrice.text != "" {
-            if product == nil {
-                product = Product(context: context)
-            }
+        self.tfPrice.text = tfPrice.text?.replacingOccurrences(of: ",", with: ".")
+        let aux = Double(self.tfPrice.text!) ?? 0.0
+        
+        if tfProductName.text != "" && !imgPoster.isEqualToImage(#imageLiteral(resourceName: "img_placeholder"))
+            && tfState.text != "" && tfPrice.text != ""  {
             
-            guard let product = product else { return }
-            
-            product.name = tfProductName.text
-            product.poster = imgPoster
-            tfPrice.text = tfPrice.text?.replacingOccurrences(of: ",", with: ".")
-            product.price = Double(tfPrice.text!) ?? 0
-            product.card = switchCreditCard.isOn
-            
-            for state in states {
-                if state.state == tfState.text {
-                    state.addToProducts(product)
-                    self.context.insert(product)
-                    try? context.save()
+            if aux < 0.01 {
+                let alert = UIAlertController(title: "Atenção", message: "O valor do produto deve ser maior ou igual a 1 centavo!", preferredStyle: .alert)
+                
+                let action = UIAlertAction(title: "Entendi", style: .default, handler: nil)
+                
+                alert.addAction(action)
+                present(alert, animated: true, completion: nil)
+            } else {
+                if product == nil {
+                    product = Product(context: context)
                 }
+                
+                guard let product = product else { return }
+                
+                product.name = tfProductName.text
+                product.poster = imgPoster
+                tfPrice.text = tfPrice.text?.replacingOccurrences(of: ",", with: ".")
+                product.price = Double(tfPrice.text!) ?? 0
+                product.card = switchCreditCard.isOn
+                
+                for state in states {
+                    if state.state == tfState.text {
+                        state.addToProducts(product)
+                        self.context.insert(product)
+                        try? context.save()
+                    }
+                }
+                
+                try? context.save()
             }
-            
-            try? context.save()
 
         } else {
             let alert = UIAlertController(title: "Atenção", message: "Você precisa preencher todos os campos para poder concluir o cadastro!", preferredStyle: .alert)
